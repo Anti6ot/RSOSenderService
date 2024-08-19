@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/index.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>EkVostok + Google spread sheet</h1>
+
+    <div class="header">
+      <button class="button">Кнопка Один</button>
+      <button class="button">Кнопка Два</button>
+    </div>
+    <h1>Отправка в ЭК ВОСТОК Показаний по сч.Электроучёта 2024</h1>
+
+    <div>
+      <button class="button" id="processingData">send</button>
+
+      <button class="button" id="sputnikBZ">База отдыха</button>
+      <button class="button" id="sputnikOZ8">Озерная 8</button>
+
+      <button class="button" id="ipShevchikOffice">ИП Шевчик Офис</button>
+      <button class="button" id="ipShevchikMagazine">ИП Шевчик Магазин</button>
+
+      <button class="button" id="sicomplex">Си-комплекс 1/7</button>
+      <button class="button" id="sicomplexMG1/8">Си-комплекс 1/8</button>
+      <button class="button" id="lenina47">Ленина 47</button>
+    </div>
+
+    <script>
+      // Обработка при нажатии кнопки по id
+      document
+        .getElementById("processingData")
+        .addEventListener("click", async () => {
+          try {
+            const response = await fetch(
+              "http://localhost:3000/processingData"
+            );
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+
+            const data = await response.json();
+
+            console.log(data);
+          } catch (error) {
+            console.error(
+              "There was a problem with the fetch operation:",
+              error
+            );
+          }
+        });
+
+      document
+        .getElementById("sputnikBZ")
+        .addEventListener("click", async () => {
+          try {
+            const response = await fetch("http://localhost:3000/sputnikBZ");
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+
+            const data = await response.json();
+
+            console.log(data);
+          } catch (error) {
+            console.error(
+              "There was a problem with the fetch operation:",
+              error
+            );
+          }
+        });
+      document
+        .getElementById("sputnikOZ8")
+        .addEventListener("click", async () => {
+          try {
+            const response = await fetch("http://localhost:3000/sputnikOZ8");
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+
+            const data = await response.json();
+
+            console.log(data);
+          } catch (error) {
+            console.error(
+              "There was a problem with the fetch operation:",
+              error
+            );
+          }
+        });
+
+      document
+        .getElementById("ipShevchikOffice")
+        .addEventListener("click", async () => {
+          try {
+            const response = await fetch(
+              "http://localhost:3000/ipShevchikOffice"
+            );
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            const data = await response.json();
+
+            console.log(data);
+          } catch (error) {
+            console.error(
+              "There was a problem with the fetch operation:",
+              error
+            );
+          }
+        });
+      document
+        .getElementById("ipShevchikMagazine")
+        .addEventListener("click", async () => {
+          try {
+            const response = await fetch(
+              "http://localhost:3000/ipShevchikMagazine"
+            );
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            const data = await response.json();
+
+            console.log(data);
+          } catch (error) {
+            console.error(
+              "There was a problem with the fetch operation:",
+              error
+            );
+          }
+        });
+      document
+        .getElementById("sicomplex")
+        .addEventListener("click", async () => {
+          try {
+            const response = await fetch("http://localhost:3000/sicomplex");
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            const data = await response.json();
+
+            console.log(data);
+          } catch (error) {
+            console.error(
+              "There was a problem with the fetch operation:",
+              error
+            );
+          }
+        });
+      document
+        .getElementById("sicomplexMG1/8")
+        .addEventListener("click", async () => {
+          try {
+            const response = await fetch(
+              "http://localhost:3000/sicomplexMG1/8"
+            );
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            const data = await response.json();
+
+            console.log(data);
+          } catch (error) {
+            console.error(
+              "There was a problem with the fetch operation:",
+              error
+            );
+          }
+        });
+
+      document
+        .getElementById("lenina47")
+        .addEventListener("click", async () => {
+          try {
+            const response = await fetch("http://localhost:3000/lenina47");
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            const data = await response.json();
+
+            console.log(data);
+          } catch (error) {
+            console.error(
+              "There was a problem with the fetch operation:",
+              error
+            );
+          }
+        });
+    </script>
+  </body>
+</html>
