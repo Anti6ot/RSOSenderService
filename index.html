@@ -6,19 +6,57 @@
     <link rel="stylesheet" href="./styles/index.css" />
     <title>Document</title>
   </head>
+
   <body>
-    <h1>EkVostok + Google spread sheet</h1>
+    <header class="header">
+      <p>Проверка доступа к таблицам</p>
+      <p id="responseMessage"></p>
+      <button class="button" id="testGoogleAuth">Проверить</button>
+    </header>
+    <div class="container">
+      <h1>Отправка в ЭК ВОСТОК Показаний по сч.Электроучёта 2024</h1>
 
-    <div class="header">
-      <button class="button">Кнопка Один</button>
-      <button class="button">Кнопка Два</button>
-    </div>
-    <h1>Отправка в ЭК ВОСТОК Показаний по сч.Электроучёта 2024</h1>
+      <h2 class="responseServer" id="responseServer"></h2>
+      <h2 class="errorsServer" id="errorsServer"></h2>
 
-    <div>
-      <button class="button" id="processingData">send</button>
+      <div class="inputDateList">
+        <p>Введите название листа</p>
 
-      <button class="button" id="sputnikBZ">База отдыха</button>
+        <div class="inputContainer">
+          <input type="text" id="sheetName" />
+        </div>
+      </div>
+      <div>
+        <div class="button-container">
+          <div class="button-container-test">
+            <div class="img_container">
+              <img src="https://www.vostok-electra.ru/img/vostok.png" />
+            </div>
+            <p>Передать показания в ЭК ВОСТОК</p>
+            <button class="button" id="processingData">Передать</button>
+          </div>
+          <div class="button-container-test">
+            <div class="img_container">
+              <img
+                src="data:image/png;base64,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"
+              />
+            </div>
+            <p>Передать показания в ВОДОКАНАЛ</p>
+            <button class="button" id="processingDataVoda">Передать</button>
+          </div>
+          <div class="button-container-test">
+            <div class="img_container">
+              <img
+                src="data:image/png;base64,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"
+              />
+            </div>
+            <p>Передать показания в Газпромэнергосбыт</p>
+            <button class="button" id="processingDataGzprm">Передать</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- <button class="button" id="sputnikBZ">База отдыха</button>
       <button class="button" id="sputnikOZ8">Озерная 8</button>
 
       <button class="button" id="ipShevchikOffice">ИП Шевчик Офис</button>
@@ -26,7 +64,7 @@
 
       <button class="button" id="sicomplex">Си-комплекс 1/7</button>
       <button class="button" id="sicomplexMG1/8">Си-комплекс 1/8</button>
-      <button class="button" id="lenina47">Ленина 47</button>
+      <button class="button" id="lenina47">Ленина 47</button> -->
     </div>
 
     <script>
@@ -34,78 +72,52 @@
       document
         .getElementById("processingData")
         .addEventListener("click", async () => {
+          const sheetName = document.getElementById("sheetName").value;
           try {
             const response = await fetch(
-              "http://localhost:3000/processingData"
+              `http://localhost:3000/processingData?sheetName=${sheetName}`
             );
             if (!response.ok) {
               throw new Error("Network response was not ok");
             }
 
-            const data = await response.json();
-
+            const message = await response.text();
+            console.log("Server response:", message);
+            // Отображаем ответ на стороне клиента
+            document.getElementById("responseServer").innerText = message;
+            const data = await response;
             console.log(data);
           } catch (error) {
+            document.getElementById("errorsServer").innerText =
+              "Не удалось передать показания";
             console.error(
               "There was a problem with the fetch operation:",
-              error
-            );
-          }
-        });
-
-      document
-        .getElementById("sputnikBZ")
-        .addEventListener("click", async () => {
-          try {
-            const response = await fetch("http://localhost:3000/sputnikBZ");
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-
-            const data = await response.json();
-
-            console.log(data);
-          } catch (error) {
-            console.error(
-              "There was a problem with the fetch operation:",
-              error
+              error.message
             );
           }
         });
       document
-        .getElementById("sputnikOZ8")
+        .getElementById("processingDataVoda")
         .addEventListener("click", async () => {
-          try {
-            const response = await fetch("http://localhost:3000/sputnikOZ8");
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-
-            const data = await response.json();
-
-            console.log(data);
-          } catch (error) {
-            console.error(
-              "There was a problem with the fetch operation:",
-              error
-            );
-          }
-        });
-
-      document
-        .getElementById("ipShevchikOffice")
-        .addEventListener("click", async () => {
+          const sheetName = document.getElementById("sheetName").value;
           try {
             const response = await fetch(
-              "http://localhost:3000/ipShevchikOffice"
+              `http://localhost:3000/processingDataVoda?sheetName=${sheetName}`
             );
             if (!response.ok) {
               throw new Error("Network response was not ok");
             }
-            const data = await response.json();
 
+            const message = await response.text();
+            console.log("Server response:", message);
+            // Отображаем ответ на стороне клиента
+            document.getElementById("responseServer").innerText = message;
+            // const data = await response.json();
+            const data = await response;
             console.log(data);
           } catch (error) {
+            document.getElementById("errorsServer").innerText =
+              "Не удалось передать показания";
             console.error(
               "There was a problem with the fetch operation:",
               error
@@ -113,19 +125,27 @@
           }
         });
       document
-        .getElementById("ipShevchikMagazine")
+        .getElementById("processingDataGzprm")
         .addEventListener("click", async () => {
+          const sheetName = document.getElementById("sheetName").value;
           try {
             const response = await fetch(
-              "http://localhost:3000/ipShevchikMagazine"
+              `http://localhost:3000/processingDataGzprm?sheetName=${sheetName}`
             );
             if (!response.ok) {
               throw new Error("Network response was not ok");
             }
-            const data = await response.json();
 
+            const message = await response.text();
+            console.log("Server response:", message);
+            // Отображаем ответ на стороне клиента
+            document.getElementById("responseServer").innerText = message;
+            // const data = await response.json();
+            const data = await response;
             console.log(data);
           } catch (error) {
+            document.getElementById("errorsServer").innerText =
+              "Не удалось передать показания";
             console.error(
               "There was a problem with the fetch operation:",
               error
@@ -133,34 +153,21 @@
           }
         });
       document
-        .getElementById("sicomplex")
-        .addEventListener("click", async () => {
-          try {
-            const response = await fetch("http://localhost:3000/sicomplex");
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-            const data = await response.json();
-
-            console.log(data);
-          } catch (error) {
-            console.error(
-              "There was a problem with the fetch operation:",
-              error
-            );
-          }
-        });
-      document
-        .getElementById("sicomplexMG1/8")
+        .getElementById("testGoogleAuth")
         .addEventListener("click", async () => {
           try {
             const response = await fetch(
-              "http://localhost:3000/sicomplexMG1/8"
+              `http://localhost:3000/testGoogleAuth`
             );
+            const message = await response.text();
+            console.log("Server response:", message);
+            // Отображаем ответ на стороне клиента
+            document.getElementById("responseMessage").innerText = message;
             if (!response.ok) {
               throw new Error("Network response was not ok");
             }
-            const data = await response.json();
+
+            const data = await response;
 
             console.log(data);
           } catch (error) {
@@ -170,25 +177,142 @@
             );
           }
         });
+      // document
+      //   .getElementById("sputnikBZ")
+      //   .addEventListener("click", async () => {
+      //     try {
+      //       const response = await fetch("http://localhost:3000/sputnikBZ");
+      //       if (!response.ok) {
+      //         throw new Error("Network response was not ok");
+      //       }
 
-      document
-        .getElementById("lenina47")
-        .addEventListener("click", async () => {
-          try {
-            const response = await fetch("http://localhost:3000/lenina47");
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-            const data = await response.json();
+      //       const data = await response.json();
 
-            console.log(data);
-          } catch (error) {
-            console.error(
-              "There was a problem with the fetch operation:",
-              error
-            );
-          }
-        });
+      //       console.log(data);
+      //     } catch (error) {
+      //       console.error(
+      //         "There was a problem with the fetch operation:",
+      //         error
+      //       );
+      //     }
+      //   });
+      // document
+      //   .getElementById("sputnikOZ8")
+      //   .addEventListener("click", async () => {
+      //     try {
+      //       const response = await fetch("http://localhost:3000/sputnikOZ8");
+      //       if (!response.ok) {
+      //         throw new Error("Network response was not ok");
+      //       }
+
+      //       const data = await response.json();
+
+      //       console.log(data);
+      //     } catch (error) {
+      //       console.error(
+      //         "There was a problem with the fetch operation:",
+      //         error
+      //       );
+      //     }
+      //   });
+
+      // document
+      //   .getElementById("ipShevchikOffice")
+      //   .addEventListener("click", async () => {
+      //     try {
+      //       const response = await fetch(
+      //         "http://localhost:3000/ipShevchikOffice"
+      //       );
+      //       if (!response.ok) {
+      //         throw new Error("Network response was not ok");
+      //       }
+      //       const data = await response.json();
+
+      //       console.log(data);
+      //     } catch (error) {
+      //       console.error(
+      //         "There was a problem with the fetch operation:",
+      //         error
+      //       );
+      //     }
+      //   });
+      // document
+      //   .getElementById("ipShevchikMagazine")
+      //   .addEventListener("click", async () => {
+      //     try {
+      //       const response = await fetch(
+      //         "http://localhost:3000/ipShevchikMagazine"
+      //       );
+      //       if (!response.ok) {
+      //         throw new Error("Network response was not ok");
+      //       }
+      //       const data = await response.json();
+
+      //       console.log(data);
+      //     } catch (error) {
+      //       console.error(
+      //         "There was a problem with the fetch operation:",
+      //         error
+      //       );
+      //     }
+      //   });
+      // document
+      //   .getElementById("sicomplex")
+      //   .addEventListener("click", async () => {
+      //     try {
+      //       const response = await fetch("http://localhost:3000/sicomplex");
+      //       if (!response.ok) {
+      //         throw new Error("Network response was not ok");
+      //       }
+      //       const data = await response.json();
+
+      //       console.log(data);
+      //     } catch (error) {
+      //       console.error(
+      //         "There was a problem with the fetch operation:",
+      //         error
+      //       );
+      //     }
+      //   });
+      // document
+      //   .getElementById("sicomplexMG1/8")
+      //   .addEventListener("click", async () => {
+      //     try {
+      //       const response = await fetch(
+      //         "http://localhost:3000/sicomplexMG1/8"
+      //       );
+      //       if (!response.ok) {
+      //         throw new Error("Network response was not ok");
+      //       }
+      //       const data = await response.json();
+
+      //       console.log(data);
+      //     } catch (error) {
+      //       console.error(
+      //         "There was a problem with the fetch operation:",
+      //         error
+      //       );
+      //     }
+      //   });
+
+      // document
+      //   .getElementById("lenina47")
+      //   .addEventListener("click", async () => {
+      //   try {
+      //     const response = await fetch("http://localhost:3000/lenina47");
+      //     if (!response.ok) {
+      //       throw new Error("Network response was not ok");
+      //     }
+      //     const data = await response.json();
+
+      //     console.log(data);
+      //   } catch (error) {
+      //     console.error(
+      //       "There was a problem with the fetch operation:",
+      //       error
+      //     );
+      //   }
+      // });
     </script>
   </body>
 </html>
