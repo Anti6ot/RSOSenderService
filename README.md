@@ -1,5 +1,6 @@
 Чтобы всё робатало как задуманно нужно:
 1. добавить файл data.js в нем мы имеем такую структуру -
+   <p>
  {const urFaceData = [
   {
     name: "Наименование юрлица/физлица в лк",
@@ -12,8 +13,9 @@
     indf: "1-4",//диапозон даты передачи показания
 }//можно добавлять через запятую несколько лк
 ]
-
+ </p>
 2.получаем из https://console.cloud.google.com/ файл credentials.json в таком формате
+<p>
 {
   "type": "service_account",
   "project_id": "ваш project_id",
@@ -27,6 +29,7 @@
   "client_x509_cert_url": "",
   "universe_domain": "googleapis.com"
 }
+ </p>
 добавляем его в корень проэкта.
 
 3. в index.js 66строка меняем в const spreadsheetId = "ваш id книги из google spredsheet"
