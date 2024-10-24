@@ -355,16 +355,20 @@ async function authorizationVoda({ num, pass, inputSiteId }, val) {
 
         // console.log("Элемент найден с id:", await input.getAttribute("id"));
         //  действия с найденным элементом
-        // await input.sendKeys(val);
-        // await driver.sleep(3000);
-        await driver.quit();
-        emitter.removeAllListeners();
-        return console.log("371 Compleate string on utils");
+        await input.sendKeys(val);
+        await driver.sleep(3000);
         // нажати и отправка показаний
         let button_sent_water = await driver.wait(
           until.elementLocated(By.xpath("//button[@id='btt_pre_send']")),
           20000
         );
+        await button_sent_water.click();
+        await driver.sleep(4000);
+
+        await driver.close();
+        emitter.removeAllListeners();
+
+        return console.log("371 Compleate string on utils");
       }
       emitter.removeAllListeners();
       return console.log("395 string on utils");

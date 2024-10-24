@@ -89,17 +89,13 @@ async function main() {
 
         const value = response.data.valueRanges[0].values[0][0];
         // условия по временнму периоду
-        // if (day >= 20 && day <= 25 && el.indf === "20-25") {
-        //   await authorization(el, value);
-        // } else if (day >= 1 && day <= 4 && el.indf === "1-4") {
-        //   await authorization(el, value);
-        // }
-        // return res
-        //   .status(500)
-        //   .send(
-        //     "Показания не переданны - дата приема показаний 20-25 или 1-4 числа"
-        //   );
-        await authorization(el, value);
+        if (day >= 20 && day <= 25 && el.indf === "20-25") {
+          await authorization(el, value);
+        } else if (day >= 1 && day <= 4 && el.indf === "1-4") {
+          await authorization(el, value);
+        }
+
+        // await authorization(el, value);
       }
       res.status(200).send(`Показания  переданы `);
     } catch (error) {
